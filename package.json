@@ -1,0 +1,10 @@
+{
+  "name": "rev-manifest-path",
+  "version": "0.1.0",
+  "description": "Get the cache busted path of an asset from a `gulp-rev` or `gulp-rev-all` manifest.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jameslnewell/rev-manifest-path.git"
+  },
+  "license": "MIT"
+}

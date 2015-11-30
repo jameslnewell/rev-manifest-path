@@ -1,4 +1,5 @@
 var path = require('path');
+var readJsonSync = require('read-json-sync');
 
 //figure out if we're in production
 var production = process.env.NODE_ENV === 'production';
@@ -10,7 +11,7 @@ var production = process.env.NODE_ENV === 'production';
  */
 function load(file) {
   try {
-    return require(file);
+    return readJsonSync(file);
   } catch(err) {
     return {};
   }

@@ -3,7 +3,11 @@ var helper = require('..');
 
 describe('rev-manifest-path', function() {
 
-  it('should return the URL of an asset that was not cache busted', function() {
+  it('should return the URL of an asset that was not cache busted when the manifest file does not exist', function() {
+    assert.equal('/bundled.css', helper()('bundled.css'));
+  });
+
+  it('should return the URL of an asset that was not cache busted when the asset is not in the manifest file', function() {
     var manifest = __dirname+'/rev-manifest.json';
     assert.equal('/img/logo.png', helper({manifest: manifest})('img/logo.png'));
   });

@@ -4,17 +4,30 @@ var path = require('path');
 var production = process.env.NODE_ENV === 'production';
 
 /**
+ * Attempt to load the manifest file
+ * @param   {string} file
+ * @returns {Object}
+ */
+function load(file) {
+  try {
+    return require(file);
+  } catch(err) {
+    return {};
+  }
+}
+
+/**
  * Create a helper method
  * @param {Object} config
- * @param {Object} [config.prefix]
- * @param {Object} [config.manifest]
+ * @param {string} [config.prefix]
+ * @param {string} [config.manifest]
  */
 module.exports = function(config) {
   config = config || {};
 
   var
     file = path.resolve(process.cwd(), config.manifest || 'rev-manifest.json'),
-    manifest = require(file)
+    manifest = load(file)
   ;
 
   /**
@@ -25,7 +38,7 @@ module.exports = function(config) {
 
     //reload the manifest file so the dev doesn't have to restart the server every time they change the frontend
     if (!production) {
-      manifest = require(file);
+      manifest = load(file);
     }
 
     return path.join('/', config.prefix || '', manifest[asset] || asset).replace('\\');

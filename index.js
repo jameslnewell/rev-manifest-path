@@ -42,7 +42,7 @@ module.exports = function(config) {
       manifest = load(file);
     }
 
-    return path.join('/', config.prefix || '', manifest[asset] || asset).replace('\\');
+    return path.join('/', config.prefix || '', manifest[asset] || asset);
   };
 
 };

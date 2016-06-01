@@ -4,18 +4,18 @@ var helper = require('..');
 describe('rev-manifest-path', function() {
 
   it('should return the URL of an asset that was not cache busted when the manifest file does not exist', function() {
-    assert.equal('/bundled.css', helper()('bundled.css'));
+    assert.equal('bundled.css', helper()('bundled.css'));
   });
 
   it('should return the URL of an asset that was not cache busted when the asset is not in the manifest file', function() {
     var manifest = __dirname+'/rev-manifest.json';
-    assert.equal('/img/logo.png', helper({manifest: manifest})('img/logo.png'));
+    assert.equal('img/logo.png', helper({manifest: manifest})('img/logo.png'));
   });
 
   it('should return the cached busted URL of an asset that was cache busted', function() {
     var manifest = __dirname+'/rev-manifest.json';
-    assert.equal('/bundled.d1a51643.css', helper({manifest: manifest})('bundled.css'));
-    assert.equal('/bundled.fdfd034b.js', helper({manifest: manifest})('bundled.js'));
+    assert.equal('bundled.d1a51643.css', helper({manifest: manifest})('bundled.css'));
+    assert.equal('bundled.fdfd034b.js', helper({manifest: manifest})('bundled.js'));
   });
 
   it('should return the prefixed URL of an asset that was not cache busted', function() {
